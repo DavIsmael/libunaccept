@@ -424,7 +424,7 @@ int accept(int s, struct sockaddr *addr, socklen_t *addrlen)
           if ((_libunaccept_rules[i].policy & VERBOSE) || (_libunaccept_syslog > 1))
             _libunaccept_log(LOG_INFO,
                              "libunaccept: Connect from %s/%s allowed, rule %d.",
-                             inet_ntoa(sin->sin_addr.s_addr), hinfo->h_name, i);
+                             inet_ntoa(sin->sin_addr), hinfo->h_name, i);
           break;
         }
         else if (_libunaccept_rules[i].policy & DENY)
@@ -432,7 +432,7 @@ int accept(int s, struct sockaddr *addr, socklen_t *addrlen)
           if ((_libunaccept_rules[i].policy & VERBOSE) || (_libunaccept_syslog > 1))
             _libunaccept_log(LOG_INFO,
                              "libunaccept: Connect from %s/%s denied, rule %d.",
-                             inet_ntoa(sin->sin_addr.s_addr), hinfo->h_name, i);
+                             inet_ntoa(sin->sin_addr), hinfo->h_name, i);
           close(res);
           errno = ECONNABORTED;
           res = -1;
@@ -443,7 +443,7 @@ int accept(int s, struct sockaddr *addr, socklen_t *addrlen)
           if ((_libunaccept_rules[i].policy & VERBOSE) || (_libunaccept_syslog > 1))
             _libunaccept_log(LOG_INFO,
                              "libunaccept: Connect from %s/%s tarpitted, rule %d.",
-                             inet_ntoa(sin->sin_addr.s_addr), hinfo->h_name, i);
+                             inet_ntoa(sin->sin_addr), hinfo->h_name, i);
 
           /* Tarpitting is simple: we just keep up to _LIBUNACCEPT_TARPIT_SIZE
            * victims open at a time, but otherwise ignore them. */
